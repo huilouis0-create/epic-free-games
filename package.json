@@ -1,6 +1,6 @@
 {
   "name": "epic-free-games",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Automatically claim free games from the Epic Games Store. Works as an OpenClaw Skill or standalone CLI.",
   "type": "module",
   "main": "src/index.js",
