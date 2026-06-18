@@ -89,6 +89,21 @@ function isFailureStatus(status) {
  * Generic webhook sender (supports JSON POST).
  */
 async function sendWebhook(url, text) {
+  // PushPlus 微信推送
+  if (url.startsWith('pp_')) {
+    const resp = await fetch('https://www.pushplus.plus/send', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        token: url,
+        title: 'Epic免费游戏领取',
+        content: text,
+      }),
+    });
+    if (!resp.ok) throw new Error(`PushPlus returned ${resp.status}`);
+    return;
+  }
+  // 其他通用 Webhook
   const resp = await fetch(url, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
